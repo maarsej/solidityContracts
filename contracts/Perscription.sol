@@ -3,26 +3,29 @@ pragma solidity ^0.4.18;
 contract Perscription {
 
     //Set by patient/doctor
-    uint private drugID;
-    uint private dosage;
-    uint private numberOfDoses;
-    uint private frequencyOfDose;
-    uint private doctorId = 123456;
-    address private patient;
+    uint public drugID;
+    uint public dosage;
+    uint public numberOfDoses;
+    uint public frequencyOfDose;
+    uint public doctorID = 123456;
+    address public patient;
 
-    bool private signed; //false if no bid acc, true if bid acc and provider signed on
+    bool public signed; //false if no bid acc, true if bid acc and provider signed on
+
     //agreed upon by pharma and set at time of signature
-    uint private costPerDose;
-    uint private startDate;
-    uint private endDate;
-    address private provider;
-
+    uint public costPerDose;
+    uint public startDate;
+    uint public endDate;
+    address public provider;
+    
+    uint public total;
+    uint private remainingTotal;
     uint[] public paymentsRecieved;
 
     modifier authorizedToViewCheck {
-        require (msg.sender == patient || msg.sender == provider); /* || msg.sender == doctorId*/
+        require (msg.sender == patient || msg.sender == provider); /* || msg.sender == doctorID*/
         _;
-    }
+    } 
 
     modifier signedContract {
         require(signed);
@@ -45,10 +48,22 @@ contract Perscription {
             endDate = accEndDate;
             provider = accProvider;
             signed = true;
-            return;
+            total = dosage*numberOfDoses*costPerDose;
         }
     }
 
-    // MAKE GETTERS FOR EVERYTHING AND THEN A JS FUNCTION ON THE OTHER SIDE THAT CALLS THEM ALL AND COMPILES INTO NICE OBJECT
+    function recievePayment (uint paymentAmount) public {
+        paymentsRecieved.push(paymentAmount);
+    }
+
+    function remainingPayment() public returns (uint) {
+        remainingTotal = total;
+        for (uint i = 0; i < paymentsRecieved.length-1; i++) {
+            remainingTotal -= paymentsRecieved[i];
+        }
+        return remainingTotal;
+    }
+    
+    // A JS FUNCTION ON THE OTHER SIDE THAT CALLS THEM ALL AND COMPILES INTO NICE OBJECT
 
 }
