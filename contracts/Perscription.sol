@@ -58,12 +58,14 @@ contract Perscription {
 
     function remainingPayment() public returns (uint) {
         remainingTotal = total;
-        for (uint i = 0; i < paymentsRecieved.length-1; i++) {
+        for (uint i = 0; i < paymentsRecieved.length; i++) {
             remainingTotal -= paymentsRecieved[i];
         }
         return remainingTotal;
     }
-    
-    // A JS FUNCTION ON THE OTHER SIDE THAT CALLS THEM ALL AND COMPILES INTO NICE OBJECT
 
+    function getDosage() public returns (uint) {
+        return dosage;
+    }
+    // A JS FUNCTION ON THE OTHER SIDE THAT CALLS THEM ALL AND COMPILES INTO NICE OBJECT
 }

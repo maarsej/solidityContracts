@@ -7,35 +7,42 @@
   <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
 </head>
 <body class="container">
-  <h1>A Simple Hello World Voting Application</h1>
+  <h1>A Simple Hello World Pharma Application</h1>
   <div id="address"></div>
   <div class="table-responsive">
     <table class="table table-bordered">
       <thead>
         <tr>
-          <th>Candidate</th>
-          <th>Votes</th>
+          <th>Detail</th>
+          <th>Value</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>Rama</td>
-          <td id="candidate-1"></td>
+          <td>drugID</td>
+          <td id="field-1"></td>
         </tr>
         <tr>
-          <td>Nick</td>
-          <td id="candidate-2"></td>
+          <td>Dosage</td>
+          <td id="field-2"></td>
         </tr>
         <tr>
-          <td>Jose</td>
-          <td id="candidate-3"></td>
+          <td>Number of Doses </td>
+          <td id="field-3"></td>
+        </tr>
+        <tr>
+          <td>Frequency of Dose </td>
+          <td id="field-4"></td>
         </tr>
       </tbody>
     </table>
     <div id="msg"></div>
   </div>
-  <input type="text" id="candidate" />
-  <a href="#" onclick="voteForCandidate()" class="btn btn-primary">Vote</a>
+  <input placeholder="id" type="text" id="drugID"/>
+  <input placeholder="size" type="text" id="dosage" />
+  <input placeholder="num" type="text" id="numberOfDoses" />
+  <input placeholder="f" type="text" id="frequencyOfDose" />
+  <a href="#" onclick="newPerscription()" class="btn btn-primary">Create Perscription</a>
 </body>
 <script src="https://cdn.rawgit.com/ethereum/web3.js/develop/dist/web3.js"></script>
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
