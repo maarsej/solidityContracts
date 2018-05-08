@@ -1,6 +1,6 @@
 pragma solidity ^0.4.18;
 
-contract Perscription {
+contract Prescription {
 
     //Set by patient/doctor
     uint public drugID;
@@ -32,7 +32,7 @@ contract Perscription {
         _;
     }
 
-    function Perscription(uint incDrugID, uint incDosage, uint incNumberOfDoses, uint incFrequencyOfDose) public {
+    function Prescription(uint incDrugID, uint incDosage, uint incNumberOfDoses, uint incFrequencyOfDose) public {
         patient = msg.sender;
         drugID = incDrugID;
         dosage = incDosage;
